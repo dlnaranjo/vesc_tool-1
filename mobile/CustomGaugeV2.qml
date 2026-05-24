@@ -28,6 +28,9 @@ import QtQuick.Controls.Material 2.2
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Indicator
+    Accessible.name: qsTr("Circular gauge")
+
     property alias minimumValue: gauge.minimumValue
     property alias maximumValue: gauge.maximumValue
     property alias value: gauge.value

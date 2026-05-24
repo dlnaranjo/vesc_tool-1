@@ -30,6 +30,9 @@ import Vedder.vesc.codeloader 1.0
 
 Item {
     id: appPageItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Packages")
+
     property var dialogParent: ApplicationWindow.overlay
     property ConfigParams mAppConf: VescIf.appConfig()
     property Commands mCommands: VescIf.commands()

@@ -27,6 +27,8 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id: editor
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Profile editor")
 
     property var dialogParent: ApplicationWindow.overlay
     property alias profileName: nameInput.text

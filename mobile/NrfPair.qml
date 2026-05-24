@@ -26,6 +26,9 @@ import Vedder.vesc.commands 1.0
 import Vedder.vesc.configparams 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("NRF pairing")
+
     implicitHeight: column.implicitHeight
     property bool hideAfterPair: false
     property bool pairOngoing: false

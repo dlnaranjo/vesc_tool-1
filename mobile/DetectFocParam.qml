@@ -27,6 +27,9 @@ import Vedder.vesc.configparams 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("FOC parameter detection")
+
     property real res: 0.0
     property real ind: 0.0
     property real lambda: 0.0

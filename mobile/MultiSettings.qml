@@ -27,6 +27,9 @@ import Vedder.vesc.configparams 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Multi-VESC settings")
+
     property var dialogParent: ApplicationWindow.overlay
 
     property Commands mCommands: VescIf.commands()

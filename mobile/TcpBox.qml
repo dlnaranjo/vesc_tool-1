@@ -25,6 +25,9 @@ import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("TCP bridge")
+
     implicitHeight: grid.implicitHeight
 
     GridLayout {

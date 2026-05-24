@@ -16,6 +16,8 @@ import Vedder.vesc.utility 1.0
 Item {
     id: topItem
     anchors.fill: parent
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Setup wizard IMU")
 
     property real pi: 3.14159265358
 

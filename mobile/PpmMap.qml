@@ -26,6 +26,9 @@ import Vedder.vesc.commands 1.0
 import Vedder.vesc.configparams 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("PPM mapping")
+
     implicitHeight: column.implicitHeight
 
     property real msMin: 0.0

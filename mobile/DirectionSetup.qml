@@ -27,6 +27,9 @@ import Vedder.vesc.configparams 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Direction setup")
+
     property var dialogParent: ApplicationWindow.overlay
 
     // TODO: This is not pretty...

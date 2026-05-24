@@ -27,6 +27,9 @@ import Vedder.vesc.configparams 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Profile display")
+
     property var dialogParent: ApplicationWindow.overlay
     property alias name: nameText.text
     property ConfigParams mMcConf: VescIf.mcConfig()

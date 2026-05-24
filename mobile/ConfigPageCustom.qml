@@ -29,6 +29,9 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id: appPageItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Custom configuration")
+
     property Commands mCommands: VescIf.commands()
     property bool isHorizontal: width > height
     property int confInd: 0

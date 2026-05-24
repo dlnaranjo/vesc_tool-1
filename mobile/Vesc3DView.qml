@@ -28,6 +28,8 @@ Scene3D {
     cameraAspectRatioMode: Scene3D.AutomaticAspectRatio
     focus: true
     multisample: true
+    Accessible.role: Accessible.Graphic
+    Accessible.name: qsTr("3D VESC view")
     property alias fielfOfView: camera.fieldOfView
 
     function setRotation(roll, pitch, yaw) {

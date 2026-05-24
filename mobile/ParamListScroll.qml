@@ -23,6 +23,9 @@ import QtQuick.Layouts 1.3
 import QtQuick.Window 2.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Parameter list")
+
     property var editorsVisible: []
     property var paramNames: []
     property bool isHorizontal: Screen.width > Screen.height & parent.width > Screen.width/2

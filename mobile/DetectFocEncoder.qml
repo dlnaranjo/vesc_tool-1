@@ -27,6 +27,9 @@ import Vedder.vesc.configparams 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("FOC encoder detection")
+
     property real mOffset: 0.0
     property real mRatio: 0.0
     property bool mInverted: false

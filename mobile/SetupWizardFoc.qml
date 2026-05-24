@@ -30,6 +30,8 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id: topItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Setup wizard FOC")
 
     property ConfigParams mMcConf: VescIf.mcConfig()
     property Commands mCommands: VescIf.commands()

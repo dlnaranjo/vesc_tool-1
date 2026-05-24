@@ -9,6 +9,9 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id: root
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("IMU real-time data")
+
     height: rect.height
     function updateText(values) {
         valText1.text =
