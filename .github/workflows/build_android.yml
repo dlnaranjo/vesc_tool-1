@@ -33,21 +33,18 @@ jobs:
       - name: Install Android SDK components
         run: |
           set -euxo pipefail
-          SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
-          if [ ! -d "${SDK_ROOT}" ]; then
-            SDK_ROOT="/opt/android-sdk"
-          fi
+          SDK_ROOT="${RUNNER_TEMP}/android-sdk"
+          mkdir -p "${SDK_ROOT}/cmdline-tools"
+          curl -fsSL -o "${RUNNER_TEMP}/cmdline-tools.zip" \
+            https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+          unzip -q "${RUNNER_TEMP}/cmdline-tools.zip" -d "${SDK_ROOT}"
+          mkdir -p "${SDK_ROOT}/cmdline-tools/latest"
+          mv "${SDK_ROOT}/cmdline-tools/bin" "${SDK_ROOT}/cmdline-tools/latest/"
+          mv "${SDK_ROOT}/cmdline-tools/lib" "${SDK_ROOT}/cmdline-tools/latest/"
+          mv "${SDK_ROOT}/cmdline-tools/NOTICE.txt" "${SDK_ROOT}/cmdline-tools/latest/" || true
+          mv "${SDK_ROOT}/cmdline-tools/source.properties" "${SDK_ROOT}/cmdline-tools/latest/"
 
-          if [ -x "${SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" ]; then
-            SDKMANAGER="${SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager"
-          elif [ -x "${SDK_ROOT}/cmdline-tools/bin/sdkmanager" ]; then
-            SDKMANAGER="${SDK_ROOT}/cmdline-tools/bin/sdkmanager"
-          else
-            echo "sdkmanager not found under ${SDK_ROOT}" >&2
-            find "${SDK_ROOT}" -maxdepth 4 -type f -name sdkmanager || true
-            exit 1
-          fi
-
+          SDKMANAGER="${SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager"
           echo "ANDROID_SDK_ROOT=${SDK_ROOT}" >> "$GITHUB_ENV"
           echo "ANDROID_HOME=${SDK_ROOT}" >> "$GITHUB_ENV"
 
@@ -65,11 +62,7 @@ jobs:
           echo "ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT}"
           java -version
           ~/Qt/5.15.2/android/bin/qmake -v
-          if [ -x "${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" ]; then
-            "${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" --version
-          else
-            "${ANDROID_SDK_ROOT}/cmdline-tools/bin/sdkmanager" --version
-          fi
+          "${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" --version
 
       - name: Build mobile APK
         run: |
