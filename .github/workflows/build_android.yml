@@ -21,11 +21,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y unzip curl
 
-      - name: Setup Java 8
+      - name: Setup Java 17 (for sdkmanager)
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '8'
+          java-version: '17'
 
       - name: Install Qt 5.15.2 Android
         uses: jurplel/install-qt-action@v4
@@ -60,6 +60,12 @@ jobs:
             "build-tools;33.0.0" \
             "ndk;23.2.8568313"
           echo "ANDROID_NDK_ROOT=${SDK_ROOT}/ndk/23.2.8568313" >> "$GITHUB_ENV"
+
+      - name: Setup Java 8 (for Android build)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
 
       - name: Show tool versions
         run: |
