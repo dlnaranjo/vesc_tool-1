@@ -31,31 +31,47 @@ jobs:
           cache: true
 
       - name: Install Android SDK components
-        env:
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
         run: |
           set -euxo pipefail
-          yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --licenses || true
-          ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager \
+          SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
+          if [ ! -d "${SDK_ROOT}" ]; then
+            SDK_ROOT="/opt/android-sdk"
+          fi
+
+          if [ -x "${SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" ]; then
+            SDKMANAGER="${SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager"
+          elif [ -x "${SDK_ROOT}/cmdline-tools/bin/sdkmanager" ]; then
+            SDKMANAGER="${SDK_ROOT}/cmdline-tools/bin/sdkmanager"
+          else
+            echo "sdkmanager not found under ${SDK_ROOT}" >&2
+            find "${SDK_ROOT}" -maxdepth 4 -type f -name sdkmanager || true
+            exit 1
+          fi
+
+          echo "ANDROID_SDK_ROOT=${SDK_ROOT}" >> "$GITHUB_ENV"
+          echo "ANDROID_HOME=${SDK_ROOT}" >> "$GITHUB_ENV"
+
+          yes | "${SDKMANAGER}" --licenses || true
+          "${SDKMANAGER}" \
             "platforms;android-33" \
             "build-tools;33.0.0" \
             "ndk;23.2.8568313"
+          echo "ANDROID_NDK_ROOT=${SDK_ROOT}/ndk/23.2.8568313" >> "$GITHUB_ENV"
 
       - name: Show tool versions
-        env:
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-          ANDROID_NDK_ROOT: /usr/local/lib/android/sdk/ndk/23.2.8568313
         run: |
           set -euxo pipefail
+          echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}"
+          echo "ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT}"
           java -version
           ~/Qt/5.15.2/android/bin/qmake -v
-          ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --version
+          if [ -x "${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" ]; then
+            "${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager" --version
+          else
+            "${ANDROID_SDK_ROOT}/cmdline-tools/bin/sdkmanager" --version
+          fi
 
       - name: Build mobile APK
-        env:
-          ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-          ANDROID_NDK_ROOT: /usr/local/lib/android/sdk/ndk/23.2.8568313
-          JAVA_HOME: ${{ env.JAVA_HOME }}
         run: |
           set -euxo pipefail
           ~/Qt/5.15.2/android/bin/qmake -config release "CONFIG+=release_android CONFIG+=build_mobile" ANDROID_ABIS="arm64-v8a" -spec android-clang
