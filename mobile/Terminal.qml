@@ -20,6 +20,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.commands 1.0
@@ -28,6 +29,8 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id:terminalPageItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Terminal console")
     property Commands mCommands: VescIf.commands()
 
     ColumnLayout {
@@ -47,6 +50,9 @@ Item {
                 anchors.fill: parent
                 readOnly: true
                 font.family: "DejaVu Sans Mono"
+                Accessible.role: Accessible.EditableText
+                Accessible.name: qsTr("Terminal output")
+                Accessible.description: qsTr("Read-only terminal output display")
             }
         }
 
@@ -56,6 +62,7 @@ Item {
                 Layout.preferredWidth: 100
                 Layout.fillWidth: true
                 text: "Clear"
+                Accessible.name: qsTr("Clear terminal output")
 
                 onClicked: {
                     terminalText.clear()
@@ -66,6 +73,8 @@ Item {
                 Layout.preferredWidth: 100
                 Layout.fillWidth: true
                 text: "Send"
+                Accessible.name: qsTr("Send terminal command")
+                Accessible.description: qsTr("Execute command in text field")
 
                 onClicked: {
                     mCommands.sendTerminalCmd(stringInput.text)
@@ -143,6 +152,9 @@ Item {
                 anchors.margins: 7
                 font.pointSize: 12
                 focus: true
+                Accessible.role: Accessible.EditableText
+                Accessible.name: qsTr("Command input")
+                Accessible.description: qsTr("Enter terminal commands here")
             }
         }
     }

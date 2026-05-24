@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 import QtQuick.Dialogs 1.3 as Dl
 import Qt.labs.folderlistmodel 2.1
 import Qt.labs.settings 1.0 as QSettings
@@ -13,6 +14,8 @@ import Vedder.vesc.logwriter 1.0
 
 Item {
     id: lispPageItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("LispBM code editor")
 
     property var dialogParent: ApplicationWindow.overlay
     property Commands mCommands: VescIf.commands()

@@ -20,6 +20,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 import QtQuick.Dialogs 1.3 as Dl
 
 import Vedder.vesc.vescinterface 1.0
@@ -29,6 +30,8 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id: appPageItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Application configuration")
 
     property Commands mCommands: VescIf.commands()
     property bool isHorizontal: width > height
@@ -44,6 +47,8 @@ Item {
         standardButtons: Dialog.Close
         modal: true
         focus: true
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
 
         Overlay.modal: Rectangle {
             color: "#AA000000"

@@ -20,12 +20,15 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
     id: topItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Configuration profiles")
     property var dialogParent: ApplicationWindow.overlay
 
     function updateVisibleProfiles() {
@@ -100,6 +103,8 @@ Item {
         title: "Remove profile"
         y: 10 + parent.height / 2 - height / 2
         parent: topItem.dialogParent
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
         width: parent.width - (rightMargin + leftMargin)
 
         Overlay.modal: Rectangle {
@@ -145,6 +150,7 @@ Item {
                 Layout.preferredWidth: 100
                 Layout.fillWidth: true
                 text: "Add Profile"
+                Accessible.name: qsTr("Add new configuration profile")
 
                 onClicked: {
                     editor.profileName = "New profile"

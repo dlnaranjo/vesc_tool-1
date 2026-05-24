@@ -20,6 +20,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 import QtQuick.Dialogs 1.3 as Dl
 
 import Vedder.vesc.vescinterface 1.0
@@ -29,6 +30,8 @@ import Vedder.vesc.fwhelper 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Firmware update")
     property alias currentPage: swipeView.currentIndex
     property alias swipeOrientation: swipeView.orientation
     property alias pageIndicatorVisible: indicator.visible

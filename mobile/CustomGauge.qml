@@ -22,10 +22,14 @@ import QtQuick.Layouts 1.3
 import QtQuick.Extras 1.4
 import QtGraphicalEffects 1.0
 import QtQuick.Controls.Material 2.2
+import QtQuick.Accessibility 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
     property double value: 0
+    Accessible.role: Accessible.Indicator
+    Accessible.name: typeText.length > 0 ? typeText : qsTr("Gauge")
+    Accessible.description: qsTr("Current value %1 %2, range %3 to %4").arg(value.toFixed(precision)).arg(unitText).arg(minimumValue).arg(maximumValue)
     property double outerRadius: width/2
     height: width
     property double labelStep: 10
