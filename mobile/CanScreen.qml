@@ -20,6 +20,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.bleuart 1.0
@@ -28,6 +29,8 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id: rootItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("CAN devices screen")
 
     property var dialogParent: ApplicationWindow.overlay
     property BleUart mBle: VescIf.bleDevice()
@@ -99,6 +102,8 @@ Item {
             font.bold: true
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
+            Accessible.role: Accessible.StaticText
+            Accessible.name: text.text
         }
 
         ListView {
@@ -131,6 +136,8 @@ Item {
             focus: true
             clip: true
             spacing: 5
+            Accessible.role: Accessible.List
+            Accessible.name: qsTr("CAN devices list")
 
             Component {
                 id: canDelegate

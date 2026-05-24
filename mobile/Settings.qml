@@ -20,6 +20,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.utility 1.0
@@ -39,6 +40,8 @@ Item {
         modal: true
         focus: true
         title: "VESC Tool Settings"
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
 
         Overlay.modal: Rectangle {
             color: "#AA000000"
@@ -62,6 +65,8 @@ Item {
                     Layout.fillWidth: true
                     text: "Use Imperial Units"
                     checked: VescIf.useImperialUnits()
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {

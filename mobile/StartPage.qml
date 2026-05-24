@@ -20,6 +20,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.bleuart 1.0
@@ -28,6 +29,8 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id: topItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Start page")
     property Commands mCommands: VescIf.commands()
     property bool isHorizontal: width > height
     signal requestOpenControls()
@@ -69,6 +72,8 @@ Item {
             GroupBox {
                 id: wizardBox
                 title: qsTr("Configuration")
+                Accessible.role: Accessible.Grouping
+                Accessible.name: title
                 Layout.fillWidth: true
                 GridLayout {
                     anchors.topMargin: -5
@@ -202,6 +207,8 @@ Item {
             GroupBox {
                 id: toolsBox
                 title: qsTr("Tools and Operations")
+                Accessible.role: Accessible.Grouping
+                Accessible.name: title
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.rowSpan: isHorizontal ? 2 : 1

@@ -20,6 +20,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.commands 1.0
@@ -28,6 +29,8 @@ import Vedder.vesc.utility 1.0
 
 Item {
     id: rtData
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Real-time data display")
     property alias updateData: commandsUpdate.enabled
     property Commands mCommands: VescIf.commands()
     property ConfigParams mMcConf: VescIf.mcConfig()

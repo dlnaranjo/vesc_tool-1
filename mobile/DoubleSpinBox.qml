@@ -21,6 +21,7 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Accessibility 1.0
 
 Item {
     height: spinbox.implicitHeight
@@ -32,6 +33,8 @@ Item {
     property real realStepSize: 1.0
     property string suffix: ""
     property string prefix: ""
+    property string accessibleName: ""
+    property string accessibleDescription: ""
 
     onPrefixChanged: forceUpdate()
     onSuffixChanged: forceUpdate()
@@ -47,6 +50,12 @@ Item {
         anchors.fill: parent
         editable: true
 //        wheelEnabled: true
+        Accessible.role: Accessible.SpinBox
+        Accessible.name: accessibleName.length > 0 ? accessibleName : (prefix.length > 0 ? prefix.replace(":", "").trim() : qsTr("Numeric value"))
+        Accessible.description: accessibleDescription.length > 0
+                                ? accessibleDescription
+                                : qsTr("Range %1 to %2, step %3").arg(realFrom).arg(realTo).arg(realStepSize)
+        Accessible.focusable: true
 
         property real factor: Math.pow(10, decimals)
         stepSize: realStepSize * factor

@@ -20,6 +20,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.configparams 1.0
@@ -32,6 +33,8 @@ Item {
     height: 140
     Layout.fillWidth: true
     property real maxVal: 1.0
+    Accessible.role: Accessible.Group
+    Accessible.name: params ? params.getLongName(paramName) : qsTr("Parameter")
 
     Component.onCompleted: {
         if (params != null) {
@@ -69,6 +72,8 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 Layout.fillWidth: true
                 font.pointSize: 12
+                Accessible.role: Accessible.StaticText
+                Accessible.name: nameText.text
             }
 
             Switch {

@@ -20,6 +20,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.bleuart 1.0
 import Vedder.vesc.commands 1.0
@@ -28,6 +29,8 @@ import Vedder.vesc.udpserversimple 1.0
 
 Item {
     id: rootItem
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Connection screen")
     property int animationDuration: 500
     property BleUart mBle: VescIf.bleDevice()
     property Commands mCommands: VescIf.commands()
@@ -141,6 +144,7 @@ Item {
                 text: qsTr("Hide")
                 Layout.preferredWidth: 120
                 flat: true
+                Accessible.name: qsTr("Hide connection screen")
                 onClicked: {
                     rootItem.opened = false
                 }
@@ -151,6 +155,8 @@ Item {
                 Layout.fillWidth: true
                 color: Utility.getAppHexColor("lightText")
                 text: qsTr("Devices Found")
+                Accessible.role: Accessible.StaticText
+                Accessible.name: text.text
                 font.bold: true
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
@@ -162,6 +168,8 @@ Item {
                 enabled: true
                 flat: true
                 Layout.preferredWidth: 120
+                Accessible.name: qsTr("Scan devices")
+                Accessible.description: qsTr("Open scan options")
 
                 onClicked: {
                     scanMenu.open()
@@ -286,6 +294,8 @@ Item {
 
         ListView {
             id: bleList
+            Accessible.role: Accessible.List
+            Accessible.name: qsTr("Discovered devices")
             Layout.fillWidth: true
             Layout.fillHeight: true
             focus: true
@@ -394,6 +404,7 @@ Item {
                                 }
 
                                 text: "Connect"
+                                Accessible.name: qsTr("Connect to %1").arg(name.replace("\n", " "))
 
                                 onClicked: {
                                     if (connectionType === 1) {
@@ -420,6 +431,7 @@ Item {
                                 Layout.preferredHeight: 55
                                 text: "Update Password"
                                 visible: connectionType === 3
+                                Accessible.name: qsTr("Update TCP hub password")
 
                                 onClicked: {
                                     hubPassDialog.uuid = hubUuid
@@ -433,6 +445,7 @@ Item {
                                 Layout.preferredHeight: 55
                                 text: "Set Name"
                                 visible: connectionType === 0
+                                Accessible.name: qsTr("Set BLE device name")
 
                                 onClicked: {
                                     bleNameDialog.addr = bleAddr
@@ -454,6 +467,8 @@ Item {
                 running: scanning
                 width: parent.width
                 height: BusyIndicator.implicitHeight*1.5
+                Accessible.role: Accessible.Indicator
+                Accessible.name: qsTr("Scanning devices")
 
                 Behavior on y {
                     NumberAnimation {
@@ -702,6 +717,8 @@ Item {
     Dialog {
         id: commDialog
         title: "Connecting..."
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
         closePolicy: Popup.NoAutoClose
         modal: true
         focus: true
@@ -728,6 +745,8 @@ Item {
         modal: true
         focus: true
         title: "Set BLE Device Name"
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
 
         Overlay.modal: Rectangle {
             color: "#AA000000"
@@ -754,6 +773,8 @@ Item {
                 anchors.margins: 7
                 font.pointSize: 12
                 focus: true
+                Accessible.role: Accessible.EditableText
+                Accessible.name: qsTr("BLE device name")
             }
         }
 
@@ -773,6 +794,8 @@ Item {
         modal: true
         focus: true
         title: "Set TCP Hub Password"
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
 
         Overlay.modal: Rectangle {
             color: "#AA000000"
@@ -799,6 +822,8 @@ Item {
                 anchors.margins: 7
                 font.pointSize: 12
                 focus: true
+                Accessible.role: Accessible.EditableText
+                Accessible.name: qsTr("TCP hub password")
             }
         }
 
@@ -810,6 +835,8 @@ Item {
     Dialog {
         id: bleEn
         standardButtons: Dialog.Ok
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
         modal: true
         focus: true
         closePolicy: Popup.CloseOnEscape
@@ -834,6 +861,8 @@ Item {
     Dialog {
         id: bleScanStart
         standardButtons: Dialog.Ok | Dialog.No
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
         modal: true
         focus: true
         closePolicy: Popup.CloseOnEscape

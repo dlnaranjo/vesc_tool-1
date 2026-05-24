@@ -22,6 +22,7 @@ import QtQuick.Controls 2.10
 import QtQuick.Controls.Material 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.10
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.commands 1.0
@@ -31,6 +32,8 @@ import Vedder.vesc.vesc3ditem 1.0
 
 ApplicationWindow {
     id: appWindow
+    Accessible.role: Accessible.Application
+    Accessible.name: title
     property Commands mCommands: VescIf.commands()
     property ConfigParams mMcConf: VescIf.mcConfig()
     property ConfigParams mAppConf: VescIf.appConfig()

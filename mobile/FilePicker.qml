@@ -30,10 +30,13 @@ import Qt.labs.folderlistmodel 2.1
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.0
 import Qt.labs.platform 1.0
+import QtQuick.Accessibility 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
     id:picker
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("File picker")
     signal fileSelected(string fileName)
     readonly property real textmargin: 8
     readonly property real textSize: 10
@@ -83,6 +86,8 @@ Item {
         Button {
             id: button
             text: ".."
+            Accessible.name: qsTr("Up folder")
+            Accessible.description: qsTr("Go to parent folder")
             anchors.right: parent.right
             anchors.rightMargin: buttonHeight
             anchors.bottom: parent.bottom
@@ -129,6 +134,8 @@ Item {
         anchors.left: parent.left
         OldControls.TableView {
             id: view
+            Accessible.role: Accessible.List
+            Accessible.name: qsTr("Files and folders")
             Layout.fillHeight: true
             Layout.fillWidth: true
             model: folderListModel
@@ -203,6 +210,7 @@ Item {
         Button {
             Layout.fillWidth: true
             text: "Cancel"
+            Accessible.name: qsTr("Cancel file picker")
             Layout.margins: 10
             Layout.topMargin: -5
             Layout.bottomMargin: 0
