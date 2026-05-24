@@ -20,12 +20,15 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.commands 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Statistics display")
     property Commands mCommands: VescIf.commands()
     property bool isHorizontal: width > height
 
@@ -43,6 +46,8 @@ Item {
             title: "Since Start"
             Layout.fillWidth: true
             Layout.preferredHeight: isHorizontal ? tripBox.height : implicitHeight
+            Accessible.role: Accessible.Grouping
+            Accessible.name: title
 
             Text {
                 id: statText
@@ -50,6 +55,8 @@ Item {
                 color: Utility.getAppHexColor("lightText")
                 text: ""
                 font.family: "DejaVu Sans Mono"
+                Accessible.role: Accessible.StaticText
+                Accessible.name: qsTr("Lifetime statistics")
             }
         }
 
@@ -57,6 +64,8 @@ Item {
             id: tripBox
             title: "Trip"
             Layout.fillWidth: true
+            Accessible.role: Accessible.Grouping
+            Accessible.name: title
 
             ColumnLayout {
                 anchors.fill: parent
@@ -68,11 +77,14 @@ Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     font.family: "DejaVu Sans Mono"
+                    Accessible.role: Accessible.StaticText
+                    Accessible.name: qsTr("Trip statistics")
                 }
 
                 Button {
                     text: "Reset"
                     Layout.fillWidth: true
+                    Accessible.name: qsTr("Reset trip counter")
                     onClicked: {
                         mCommands.resetStats(false)
                     }

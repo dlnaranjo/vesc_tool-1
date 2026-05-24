@@ -20,11 +20,14 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQuick.Accessibility 1.0
 import Vedder.vesc.utility 1.0
 
 Item {
     Layout.fillWidth: true
     height: 25
+    Accessible.role: Accessible.Separator
+    Accessible.name: sepName
 
     property string sepName: ""
 

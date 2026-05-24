@@ -24,6 +24,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 import QtQuick.Controls.Material 2.2
+import QtQuick.Accessibility 1.0
 
 import Vedder.vesc.vescinterface 1.0
 import Vedder.vesc.utility 1.0
@@ -32,6 +33,8 @@ import Vedder.vesc.configparams 1.0
 
 Item {
     id: rtData
+    Accessible.role: Accessible.Pane
+    Accessible.name: qsTr("Real-time data configuration")
     property var dialogParent: ApplicationWindow.overlay
     anchors.fill: parent
     property alias updateData: commandsUpdate.enabled
