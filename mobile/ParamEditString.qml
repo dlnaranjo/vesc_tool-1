@@ -35,6 +35,7 @@ Item {
     property real maxVal: 1.0
     Accessible.role: Accessible.Group
     Accessible.name: params ? params.getLongName(paramName) : qsTr("Text parameter")
+    Accessible.description: qsTr("Text value editor")
 
     Component.onCompleted: {
         if (params != null) {
@@ -95,7 +96,10 @@ Item {
                     font.pointSize: 12
                     focus: true
                     Accessible.role: Accessible.EditableText
-                    Accessible.name: qsTr("Text input")
+                    Accessible.name: nameText.text
+                    Accessible.description: maximumLength > 0
+                                            ? qsTr("Maximum %1 characters").arg(maximumLength)
+                                            : qsTr("No maximum length")
 
                     onTextChanged: {
                         if (params != null) {
@@ -113,6 +117,8 @@ Item {
                 Button {
                     id: nowButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Read current value")
+                    Accessible.description: qsTr("Update to current controller value")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -127,6 +133,8 @@ Item {
                 Button {
                     id: defaultButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Load default value")
+                    Accessible.description: qsTr("Reset to default")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -141,6 +149,8 @@ Item {
                 Button {
                     id: helpButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Show help")
+                    Accessible.description: qsTr("Show parameter description")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500

@@ -36,6 +36,9 @@ Item {
     property bool createReady: false
     Accessible.role: Accessible.Group
     Accessible.name: params ? params.getLongName(paramName) : qsTr("Parameter")
+    Accessible.description: params
+                            ? qsTr("Current value %1%2, range %3 to %4").arg(valueBox.realValue).arg(valueBox.suffix).arg(valueBox.realFrom).arg(valueBox.realTo)
+                            : qsTr("Numeric parameter editor")
 
     Component.onCompleted: {
         if (params != null) {
@@ -104,6 +107,8 @@ Item {
                 id: valueBox
                 Layout.fillWidth: true
                 decimals: 0
+                accessibleName: nameText.text
+                accessibleDescription: qsTr("Current value %1%2, range %3 to %4").arg(realValue).arg(suffix).arg(realFrom).arg(realTo)
 
                 onRealValueChanged: {
                     if (!params.getParamEditAsPercentage(paramName)) {
@@ -126,6 +131,9 @@ Item {
                 Layout.fillWidth: true
                 editable: true
                 visible: false
+                Accessible.role: Accessible.SpinBox
+                Accessible.name: qsTr("%1 percentage").arg(nameText.text)
+                Accessible.description: qsTr("Current value %1 percent, range %2 to %3").arg(value).arg(from).arg(to)
 
                 onValueChanged: {
                     if (params.getParamEditAsPercentage(paramName)) {
@@ -188,6 +196,8 @@ Item {
                 Button {
                     id: helpButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Show help")
+                    Accessible.description: qsTr("Show parameter description")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500

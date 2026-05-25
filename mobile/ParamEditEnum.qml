@@ -78,12 +78,17 @@ Item {
                 font.pointSize: 12
                 Accessible.role: Accessible.StaticText
                 Accessible.name: nameText.text
-            }}
+            }
 
             ComboBox {
                 id: enumBox
                 focusPolicy: Qt.NoFocus
                 Layout.fillWidth: true
+                Accessible.role: Accessible.ComboBox
+                Accessible.name: nameText.text
+                Accessible.description: currentText.length > 0
+                                        ? qsTr("Current selection: %1").arg(currentText)
+                                        : qsTr("Dropdown list")
 
                 background: Rectangle {
                     implicitHeight: 35
@@ -108,6 +113,8 @@ Item {
                 Button {
                     id: nowButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Read current value")
+                    Accessible.description: qsTr("Update to current controller value")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -122,6 +129,8 @@ Item {
                 Button {
                     id: defaultButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Load default value")
+                    Accessible.description: qsTr("Reset to default")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -136,6 +145,8 @@ Item {
                 Button {
                     id: helpButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Show help")
+                    Accessible.description: qsTr("Show parameter description")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500

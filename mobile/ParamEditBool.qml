@@ -35,6 +35,7 @@ Item {
     property real maxVal: 1.0
     Accessible.role: Accessible.Group
     Accessible.name: params ? params.getLongName(paramName) : qsTr("Parameter")
+    Accessible.description: qsTr("Current state: %1").arg(boolSwitch.checked ? qsTr("enabled") : qsTr("disabled"))
 
     Component.onCompleted: {
         if (params != null) {
@@ -79,6 +80,9 @@ Item {
             Switch {
                 id: boolSwitch
                 focusPolicy: Qt.NoFocus
+                Accessible.role: Accessible.CheckBox
+                Accessible.name: nameText.text
+                Accessible.description: checked ? qsTr("Enabled") : qsTr("Disabled")
 
                 Layout.fillWidth: true
 
@@ -97,6 +101,8 @@ Item {
                 Button {
                     id: nowButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Read current value")
+                    Accessible.description: qsTr("Update to current controller value")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -111,6 +117,8 @@ Item {
                 Button {
                     id: defaultButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Load default value")
+                    Accessible.description: qsTr("Reset to default")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -125,6 +133,8 @@ Item {
                 Button {
                     id: helpButton
                     focusPolicy: Qt.NoFocus
+                    Accessible.name: qsTr("Show help")
+                    Accessible.description: qsTr("Show parameter description")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500

@@ -42,6 +42,7 @@ Item {
         title: "VESC Tool Settings"
         Accessible.role: Accessible.Dialog
         Accessible.name: title
+        Accessible.description: qsTr("Configure application preferences and behavior")
 
         Overlay.modal: Rectangle {
             color: "#AA000000"
@@ -74,6 +75,8 @@ Item {
                     Layout.fillWidth: true
                     text: "Use Negative Speed"
                     checked: VescIf.speedGaugeUseNegativeValues()
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {
@@ -83,6 +86,8 @@ Item {
                     checked: VescIf.keepScreenOn()
                     visible: Qt.platform.os !== "ios"
                     enabled: Qt.platform.os !== "ios"
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {
@@ -92,6 +97,8 @@ Item {
                     checked: VescIf.getAllowScreenRotation()
                     visible: Qt.platform.os !== "ios"
                     enabled: Qt.platform.os !== "ios"
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {
@@ -99,6 +106,8 @@ Item {
                     Layout.fillWidth: true
                     text: "Load QML UI on Connect"
                     checked: VescIf.getLoadQmlUiOnConnect()
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {
@@ -106,6 +115,8 @@ Item {
                     Layout.fillWidth: true
                     text: "Ask before loading QML UI"
                     checked: VescIf.askQmlLoad()
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {
@@ -113,6 +124,8 @@ Item {
                     Layout.fillWidth: true
                     text: "Reconnect CAN on connect"
                     checked: VescIf.reconnectLastCan()
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {
@@ -120,6 +133,8 @@ Item {
                     Layout.fillWidth: true
                     text: "Scan CAN on connect"
                     checked: VescIf.scanCanOnConnect()
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {
@@ -127,6 +142,8 @@ Item {
                     Layout.fillWidth: true
                     text: "Show firmware update message"
                     checked: VescIf.showFwUpdateAvailable()
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                 }
 
                 CheckBox {
@@ -134,6 +151,8 @@ Item {
                     Layout.fillWidth: true
                     text: "Use Dark Mode"
                     checked: Utility.isDarkMode()
+                    Accessible.name: text
+                    Accessible.role: Accessible.CheckBox
                     onCheckedChanged: {
                         Utility.setDarkMode(checked)
                     }
@@ -187,6 +206,9 @@ Item {
         width: parent.width - 20
         closePolicy: Popup.CloseOnEscape
         title: "Theme Changed"
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
+        Accessible.description: qsTr("Confirm theme change and restart application")
 
         Overlay.modal: Rectangle {
             color: "#AA000000"
