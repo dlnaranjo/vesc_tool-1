@@ -104,6 +104,9 @@ Item {
 
                 Rectangle {
                     property variant modelData: model
+                    Accessible.role: Accessible.ListItem
+                    Accessible.name: name
+                    Accessible.description: qsTr("ID: %1").arg(canId)
 
                     width: canIdList.width
                     height: 130

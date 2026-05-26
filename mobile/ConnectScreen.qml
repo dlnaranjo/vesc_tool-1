@@ -311,6 +311,9 @@ Item {
                     height: 120
                     color: Utility.getAppHexColor("normalBackground")
                     radius: 10
+                    Accessible.role: Accessible.ListItem
+                    Accessible.name: name
+                    Accessible.description: qsTr("Connection type %1").arg(connectionType)
 
                     RowLayout {
                         anchors.fill: parent

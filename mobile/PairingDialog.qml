@@ -94,6 +94,9 @@ Item {
 
                     Rectangle {
                         property variant modelData: model
+                        Accessible.role: Accessible.ListItem
+                        Accessible.name: uuid
+                        Accessible.description: qsTr("Paired device UUID")
 
                         width: pairList.width
                         height: 60

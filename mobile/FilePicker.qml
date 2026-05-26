@@ -159,6 +159,8 @@ Item {
                     Rectangle {
                         color: Utility.getAppHexColor("normalBackground")
                         anchors.fill: parent
+                        Accessible.role: Accessible.ListItem
+                        Accessible.name: styleData.value !== undefined ? styleData.value : ""
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {

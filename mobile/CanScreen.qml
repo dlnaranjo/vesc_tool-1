@@ -142,6 +142,9 @@ Item {
             Component {
                 id: canDelegate
                 Rectangle {
+                    Accessible.role: Accessible.ListItem
+                    Accessible.name: name
+                    Accessible.description: qsTr("CAN ID: %1").arg(ID)
                     Component.onCompleted: showAnim.start();
                     transform: Rotation { id:rt; origin.x: 0; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}//     <--- I like this one more!
                     SequentialAnimation {

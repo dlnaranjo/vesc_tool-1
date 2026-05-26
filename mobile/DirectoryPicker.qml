@@ -163,8 +163,8 @@ Item {
                     height: rowHeight
                     Rectangle {
                         color: Utility.getAppHexColor("disabledText")
-                        anchors.fill: parent
-                        MouseArea {
+                        anchors.fill: parent                        Accessible.role: Accessible.ListItem
+                        Accessible.name: styleData.value !== undefined ? styleData.value : ""                        MouseArea {
                             anchors.fill: parent
                             onClicked: {
                                 onItemClick(fileNameText.text)
