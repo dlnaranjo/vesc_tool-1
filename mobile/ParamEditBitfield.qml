@@ -149,28 +149,30 @@ Item {
                 Layout.fillWidth: true;
                 columns: 2
                 CheckBox { Layout.topMargin: 0; Layout.bottomMargin: -8; Layout.fillWidth: true;
-                    id: b0Box; focusPolicy: Qt.NoFocus; text: "B0"; onCheckedChanged: updateFromBoxes(); }
+                    id: b0Box; focusPolicy: Qt.StrongFocus; text: "B0"; Accessible.role: Accessible.CheckBox; Accessible.name: qsTr("Bit 0"); onCheckedChanged: updateFromBoxes(); }
                 CheckBox { Layout.topMargin: 0; Layout.bottomMargin: -8; Layout.fillWidth: true;
-                    id: b1Box; focusPolicy: Qt.NoFocus; text: "B1"; onCheckedChanged: updateFromBoxes(); }
+                    id: b1Box; focusPolicy: Qt.StrongFocus; text: "B1"; Accessible.role: Accessible.CheckBox; Accessible.name: qsTr("Bit 1"); onCheckedChanged: updateFromBoxes(); }
                 CheckBox { Layout.topMargin: -8; Layout.bottomMargin: -8; Layout.fillWidth: true;
-                    id: b2Box; focusPolicy: Qt.NoFocus; text: "B2"; onCheckedChanged: updateFromBoxes(); }
+                    id: b2Box; focusPolicy: Qt.StrongFocus; text: "B2"; Accessible.role: Accessible.CheckBox; Accessible.name: qsTr("Bit 2"); onCheckedChanged: updateFromBoxes(); }
                 CheckBox { Layout.topMargin: -8; Layout.bottomMargin: -8; Layout.fillWidth: true;
-                    id: b3Box; focusPolicy: Qt.NoFocus; text: "B3"; onCheckedChanged: updateFromBoxes(); }
+                    id: b3Box; focusPolicy: Qt.StrongFocus; text: "B3"; Accessible.role: Accessible.CheckBox; Accessible.name: qsTr("Bit 3"); onCheckedChanged: updateFromBoxes(); }
                 CheckBox { Layout.topMargin: -8; Layout.bottomMargin: -8; Layout.fillWidth: true;
-                    id: b4Box; focusPolicy: Qt.NoFocus; text: "B4"; onCheckedChanged: updateFromBoxes(); }
+                    id: b4Box; focusPolicy: Qt.StrongFocus; text: "B4"; Accessible.role: Accessible.CheckBox; Accessible.name: qsTr("Bit 4"); onCheckedChanged: updateFromBoxes(); }
                 CheckBox { Layout.topMargin: -8; Layout.bottomMargin: -8; Layout.fillWidth: true;
-                    id: b5Box; focusPolicy: Qt.NoFocus; text: "B5"; onCheckedChanged: updateFromBoxes(); }
+                    id: b5Box; focusPolicy: Qt.StrongFocus; text: "B5"; Accessible.role: Accessible.CheckBox; Accessible.name: qsTr("Bit 5"); onCheckedChanged: updateFromBoxes(); }
                 CheckBox { Layout.topMargin: -8; Layout.bottomMargin: -8; Layout.fillWidth: true;
-                    id: b6Box; focusPolicy: Qt.NoFocus; text: "B6"; onCheckedChanged: updateFromBoxes(); }
+                    id: b6Box; focusPolicy: Qt.StrongFocus; text: "B6"; Accessible.role: Accessible.CheckBox; Accessible.name: qsTr("Bit 6"); onCheckedChanged: updateFromBoxes(); }
                 CheckBox { Layout.topMargin: -8; Layout.bottomMargin: -8; Layout.fillWidth: true;
-                    id: b7Box; focusPolicy: Qt.NoFocus; text: "B7"; onCheckedChanged: updateFromBoxes(); }
+                    id: b7Box; focusPolicy: Qt.StrongFocus; text: "B7"; Accessible.role: Accessible.CheckBox; Accessible.name: qsTr("Bit 7"); onCheckedChanged: updateFromBoxes(); }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 Button {
                     id: nowButton
-                    focusPolicy: Qt.NoFocus
+                    focusPolicy: Qt.StrongFocus
+                    Accessible.name: qsTr("Read current value")
+                    Accessible.description: qsTr("Update to current controller value")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -184,7 +186,9 @@ Item {
 
                 Button {
                     id: defaultButton
-                    focusPolicy: Qt.NoFocus
+                    focusPolicy: Qt.StrongFocus
+                    Accessible.name: qsTr("Load default value")
+                    Accessible.description: qsTr("Reset to default")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -198,7 +202,9 @@ Item {
 
                 Button {
                     id: helpButton
-                    focusPolicy: Qt.NoFocus
+                    focusPolicy: Qt.StrongFocus
+                    Accessible.name: qsTr("Show help")
+                    Accessible.description: qsTr("Show parameter description")
 
                     Layout.fillWidth: true
                     Layout.preferredWidth: 500
@@ -213,6 +219,24 @@ Item {
                 }
             }
         }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+R"
+        context: Qt.WindowShortcut
+        onActivated: nowButton.clicked()
+    }
+
+    Shortcut {
+        sequence: "Ctrl+D"
+        context: Qt.WindowShortcut
+        onActivated: defaultButton.clicked()
+    }
+
+    Shortcut {
+        sequence: "F1"
+        context: Qt.WindowShortcut
+        onActivated: helpButton.clicked()
     }
 
     Connections {
