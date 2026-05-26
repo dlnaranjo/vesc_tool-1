@@ -34,7 +34,7 @@ Item {
         id: control
         anchors.fill: parent
         flat: true
-        focusPolicy: Qt.NoFocus
+        focusPolicy: Qt.StrongFocus
         Accessible.role: Accessible.Button
         Accessible.name: rootItem.buttonText.length > 0 ? rootItem.buttonText : qsTr("Button")
         Accessible.description: rootItem.accessibleDescription

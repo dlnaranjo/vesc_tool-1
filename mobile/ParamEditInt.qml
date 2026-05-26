@@ -163,7 +163,7 @@ Item {
                 Layout.fillWidth: true
                 Button {
                     id: nowButton
-                    focusPolicy: Qt.NoFocus
+                    focusPolicy: Qt.StrongFocus
                     Accessible.name: qsTr("Read current value")
                     Accessible.description: qsTr("Update to current controller value")
 
@@ -179,7 +179,7 @@ Item {
 
                 Button {
                     id: defaultButton
-                    focusPolicy: Qt.NoFocus
+                    focusPolicy: Qt.StrongFocus
                     Accessible.name: qsTr("Load default value")
                     Accessible.description: qsTr("Reset to default")
 
@@ -195,7 +195,7 @@ Item {
 
                 Button {
                     id: helpButton
-                    focusPolicy: Qt.NoFocus
+                    focusPolicy: Qt.StrongFocus
                     Accessible.name: qsTr("Show help")
                     Accessible.description: qsTr("Show parameter description")
 
@@ -212,6 +212,24 @@ Item {
                 }
             }
         }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+R"
+        context: Qt.WindowShortcut
+        onActivated: nowButton.clicked()
+    }
+
+    Shortcut {
+        sequence: "Ctrl+D"
+        context: Qt.WindowShortcut
+        onActivated: defaultButton.clicked()
+    }
+
+    Shortcut {
+        sequence: "F1"
+        context: Qt.WindowShortcut
+        onActivated: helpButton.clicked()
     }
 
     Connections {
