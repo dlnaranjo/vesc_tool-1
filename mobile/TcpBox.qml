@@ -45,7 +45,10 @@ Item {
 
         CheckBox {
             id: tcpServerEnBox
-            focusPolicy: Qt.NoFocus
+            focusPolicy: Qt.StrongFocus
+            Accessible.role: Accessible.CheckBox
+            Accessible.name: qsTr("Activate TCP bridge")
+            Accessible.description: checked ? qsTr("Bridge active") : qsTr("Bridge inactive")
             text: "Activate Bridge"
             Layout.fillWidth: true
             Layout.columnSpan: 2

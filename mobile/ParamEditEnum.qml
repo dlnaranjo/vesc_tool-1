@@ -82,7 +82,7 @@ Item {
 
             ComboBox {
                 id: enumBox
-                focusPolicy: Qt.NoFocus
+                focusPolicy: Qt.StrongFocus
                 Layout.fillWidth: true
                 Accessible.role: Accessible.ComboBox
                 Accessible.name: nameText.text

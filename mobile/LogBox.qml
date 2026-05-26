@@ -62,7 +62,10 @@ Item {
         Button {
             text: "Reset"
             Layout.fillWidth: true
-            focusPolicy: Qt.NoFocus
+            focusPolicy: Qt.StrongFocus
+            Accessible.role: Accessible.Button
+            Accessible.name: qsTr("Reset log path")
+            Accessible.description: qsTr("Reset log folder to default documents location")
 
             onClicked: {
                 rtLogFileText.text = StandardPaths.writableLocation(StandardPaths.DocumentsLocation) + "/logs"
@@ -72,7 +75,10 @@ Item {
         Button {
             text: "Browse"
             Layout.fillWidth: true
-            focusPolicy: Qt.NoFocus
+            focusPolicy: Qt.StrongFocus
+            Accessible.role: Accessible.Button
+            Accessible.name: qsTr("Browse log folder")
+            Accessible.description: qsTr("Open folder picker to select log destination")
 
             onClicked: {
                 if (Utility.requestFilePermission()) {
@@ -147,7 +153,10 @@ Item {
             text: "Enable RT Data Logging"
             Layout.fillWidth: true
             Layout.columnSpan: 3
-            focusPolicy: Qt.NoFocus
+            focusPolicy: Qt.StrongFocus
+            Accessible.role: Accessible.CheckBox
+            Accessible.name: qsTr("Enable RT data logging")
+            Accessible.description: checked ? qsTr("Logging active") : qsTr("Logging inactive")
 
             onClicked: {
                 if (checked && !VescIf.isPortConnected()) {

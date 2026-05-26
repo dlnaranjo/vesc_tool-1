@@ -51,7 +51,10 @@ Item {
 
         CheckBox {
             id: enableBox
-            focusPolicy: Qt.NoFocus
+            focusPolicy: Qt.StrongFocus
+            Accessible.role: Accessible.CheckBox
+            Accessible.name: qsTr("Connect as server")
+            Accessible.description: checked ? qsTr("Connected as server") : qsTr("Not connected")
             text: "Connect as Server"
             Layout.fillWidth: true
             Layout.columnSpan: 2
@@ -189,7 +192,9 @@ Item {
                 Layout.fillWidth: true
                 text: "Reset Defaults"
                 enabled: !enableBox.checked
-                focusPolicy: Qt.NoFocus
+                focusPolicy: Qt.StrongFocus
+                Accessible.role: Accessible.Button
+                Accessible.name: qsTr("Reset to default server")
 
                 onClicked: {
                     serverText.text = "veschub.vedder.se"
@@ -203,7 +208,9 @@ Item {
                 Layout.fillWidth: true
                 text: "Connect as Client"
                 enabled: !enableBox.checked
-                focusPolicy: Qt.NoFocus
+                focusPolicy: Qt.StrongFocus
+                Accessible.role: Accessible.Button
+                Accessible.name: qsTr("Connect as client")
 
                 onClicked: {
                     connectToHub()
