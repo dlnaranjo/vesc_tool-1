@@ -74,3 +74,5 @@ nix run nixpkgs#qtcreator
 ```
 
 This makes sure that QT Creator has access to the required dependencies.
+
+<!-- Build trigger: 2026-05-28 07:57:31 -->
